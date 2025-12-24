@@ -1,0 +1,312 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+}
+
+:root{
+    --draw-border: 4px solid #222;
+}
+.container{
+    width: 1000px;
+    margin: 20px auto;
+}
+.row{
+    display: flex;
+}
+@media (max-width: 767px) {
+    .row{
+        flex-direction: column;
+    }
+    .container{
+        width: 400px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1050px) {
+    .row{
+        flex-direction: column;
+    }
+    .container{width: 700px;}
+}
+hr{
+    border: 1px solid #eee;
+}
+.container .game-info{
+    text-transform: capitalize;
+    display: flex;
+}
+.container .game-info .game-name{
+    flex: 1;
+}
+.container .game-info img{
+    width: 50px;
+    height: 50px;
+}
+.container .game-info .game-name p{
+    margin: 0;
+    padding: 0;
+    transform: translateY(20px);
+    font-size: 18px;
+    font-weight: bold;
+    color: #e91e63;
+    text-transform: uppercase;
+}
+.container .game-info .category{
+    flex: 1;
+    text-align: right;
+    span{
+        display: inline-block;
+        color: #e91e63;
+        text-transform: capitalize;
+        font-weight: bold;
+        transform: translateY(20px);
+    }
+    p{
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        transform: translateY(20px);
+    }
+}
+.hangman-draw{
+    flex: 1;
+    background-color: #f8f8f8;
+    padding: 20px;
+    height: 324px;
+}
+.hangman-draw .the-draw{
+    width: 60px;
+    height: 280px;
+    border-bottom: var(--draw-border);
+    position: relative;
+    margin: auto;
+    left: -50px;
+    opacity: 0;
+}
+.hangman-draw .the-stand{
+    position: absolute;
+    width: 4px;
+    background-color: #222;
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    opacity: 0;
+}
+.hangman-draw .the-hang{
+    opacity: 0;
+}
+.hangman-draw .the-hang::before{
+    content: '';
+    position: absolute;
+    height: 4px;
+    background-color: #222;
+    width: 100px;
+    top: 15px;
+    left: 30px;
+}
+.hangman-draw .the-hang::after{
+    content: '';
+    position: absolute;
+    height: 30px;
+    background-color: #222;
+    width: 4px;
+    top: 15px;
+    left: 130px;
+}
+.hangman-draw .the-rope{
+    opacity: 0;
+}
+.hangman-draw .the-rope{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 4px dashed #222;
+    left: 97px;
+    top: 42px;
+}
+.hangman-draw .the-man .head{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    border: 4px solid #222;
+    left: 107px;
+    top: 52px;
+    opacity: 0;
+}
+.hangman-draw .the-man .body{
+    height: 90px;
+    width: 4px;
+    background-color: #222;
+    position: absolute;
+    left: 130px;
+    top: 100px;
+    opacity: 0;
+}
+.hangman-draw .the-man .hands{
+    opacity: 0;
+}
+.hangman-draw .the-man .hands::before, 
+.hangman-draw .the-man .hands::after{
+    content: '';
+    height: 4px;
+    background-color: #222;
+    width: 50px;
+    position: absolute;
+    top: 110px;
+}
+.hangman-draw .the-man .hands::before{
+    left: 84px;
+    transform: rotate(30deg);
+    
+}
+.hangman-draw .the-man .hands::after{
+    left: 130px;
+    transform: rotate(-30deg);
+}
+.hangman-draw .the-man .legs{
+    opacity: 0;
+}
+.hangman-draw .the-man .legs::before, 
+.hangman-draw .the-man .legs::after{
+    content: '';
+    height: 4px;
+    background-color: #222;
+    width: 50px;
+    position: absolute;
+    bottom: 70px;
+}
+.hangman-draw .the-man .legs::before{
+    left: 87px;
+    transform: rotate(-40deg);
+}
+.hangman-draw .the-man .legs::after{
+    left: 127px;
+    transform: rotate(40deg);
+}
+.hangman-draw.failed-1 .the-draw{
+    opacity: 1;
+}
+.hangman-draw.failed-2 .the-stand{
+    opacity: 1;
+}
+.hangman-draw.failed-3 .the-hang{
+    opacity: 1;
+}
+.hangman-draw.failed-4 .the-rope{
+    opacity: 1;
+}
+.hangman-draw.failed-5 .head{
+    opacity: 1;
+}
+.hangman-draw.failed-6 .body{
+    opacity: 1;
+}
+.hangman-draw.failed-7 .hands{
+    opacity: 1;
+}
+.hangman-draw.failed-8 .legs{
+    opacity: 1;
+}
+.letters{
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+}
+.letters.finshed{
+    pointer-events: none;
+}
+.letters .span-letter{
+    width: 55px;
+    height: 55px;
+    background-color: #009688;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 15px;
+    display: inline-block;
+    margin-bottom: 12px;
+    color: white;
+    cursor: pointer;
+    line-height: 55px;
+    transition: .3s;
+}
+.letters .clicked{
+    background-color: #222;
+    opacity: .2;
+    pointer-events: none;
+}
+.letters .span-letter:hover{
+    background-color: #097066;
+}
+.letters-guess {
+    display: flex;
+    background-color: #f8f8f8;
+    padding: 20px;
+    justify-content: center;
+    min-height: 104px;
+}
+
+.letters-guess span{
+    margin-right: 10px;
+    background-color: #fdfdfd;
+    width: 50px;
+    height: 50px;
+    border-bottom: 3px solid #222;
+    line-height: 60px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: .3s;
+}
+.letters-guess span.remove{
+    display: none;
+}
+.letters-guess span.with-space{
+    background: none;
+    border-bottom: none;
+    position: relative;
+}
+.letters-guess span.with-space::before{
+    content: '';
+    position: absolute;
+    background-color: #222;
+    width: 20px;
+    height: 4px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.pope{
+    position: fixed;
+    background-color: #009688;
+    padding: 100px 20px;
+    width: 80%;
+    top: 50%;
+    left: 10%;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 40px;
+    border: 1px solid #ccc;
+    color: white;
+    border-radius: 6px;
+}
+.pope button{
+    display: block;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: capitalize;
+    margin-top: 20px;
+    background-color: #e91e63;
+    border: none;
+    font-size: 20px;
+    width: 20%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}

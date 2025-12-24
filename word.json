@@ -1,0 +1,9 @@
+
+{
+    "programming": ["php", "javascript", "go", "scala", "fortran", "r", "mysql", "python", "spl"],
+    "movies": ["Prestige", "Inception", "Parasite", "Interstellar", "Whiplash", "Memento", "Coco", "Up"],
+    "people": ["Abdulla ayman","Albert Einstein", "Hitchcock", "Alexander", "Cleopatra", "Mahatma Ghandi"],
+    "countries": ["Syria", "Palestine", "Yemen", "Egypt", "Bahrain", "Qatar"],
+    "color": ["red", "green", "yellow", "blue", "black", "white", "bink"],
+    "number": ["100", "2000", "1111111", "2025", "134561", "100.500"]
+}
